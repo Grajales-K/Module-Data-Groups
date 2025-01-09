@@ -24,3 +24,4 @@ for (const value in author) {
   // Logs the value associated with each key
   console.log(author[value]);
 }
+
