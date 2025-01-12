@@ -25,3 +25,12 @@ for (const value in author) {
   console.log(author[value]);
 }
 
+
+
+
+// ================= access to its keys ==============
+
+for (const key in author){
+console.log(key);
+// console.log(key, author[key]); 
+}
