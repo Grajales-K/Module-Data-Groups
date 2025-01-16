@@ -11,6 +11,7 @@ test("parses querystring values containing =", () => {
     equation: "x=y+1",
   });
 });
+
 describe("parseQueryString", () => {
   test("parses a simple query string", () => {
     expect(parseQueryString("name=Sajad")).toEqual({
@@ -48,8 +49,8 @@ describe("parseQueryString", () => {
   });
 
   test("handles values with special characters", () => {
-    expect(parseQueryString("name=Sajad@25")).toEqual({
-      name: "Sajad@25",
+    expect(parseQueryString("name=Sonia@25")).toEqual({
+      name: "Sonia@25",
     });
   });
 
@@ -67,10 +68,17 @@ describe("parseQueryString", () => {
   });
 
   test("handles query string with mixed valid and invalid parts", () => {
-    expect(parseQueryString("name=Sajad&age&=25")).toEqual({
-      name: "Sajad",
+    expect(parseQueryString("name=Sonia&age&=25")).toEqual({
+      name: "Sonia",
       age: undefined,
       "": "25",
+    });
+  });
+
+  test("handles special characters correctly", () => {
+    const specialQueryString = "name=%20G%C3%BCnter";
+    expect(parseQueryString(specialQueryString)).toEqual({
+      name: " Günter",
     });
   });
 });
