@@ -4,9 +4,9 @@ function parseQueryString(queryString) {
     return queryParams;
   }
   const keyValuePairs = queryString.split("&");
-
   for (const pair of keyValuePairs) {
-    const [key, value] = pair.split("=");
+    const [key, ...valueParts] = pair.split("=");
+    const value = valueParts.length > 0 ? valueParts.join("=") : undefined;
     queryParams[key] = value;
   }
 
