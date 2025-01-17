@@ -7,6 +7,11 @@ function setAlarm() {
 var runTIme = new Audio("trebolClan.mp3");
 var stopTIme = new Audio("stopAlarm.mp3");
 
+  // Select the input element
+  const alarmInput = document.getElementById('alarmSet');
+
+  // Set the placeholder dynamically
+  alarmInput.placeholder = "Type or select your time -----------> ";
 
 function setup() {
   document.getElementById("set").addEventListener("click", () => {
