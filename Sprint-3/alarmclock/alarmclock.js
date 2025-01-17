@@ -1,8 +1,12 @@
-function setAlarm() {}
+function setAlarm() {
+
+}
 
 // DO NOT EDIT BELOW HERE
 
-var audio = new Audio("alarmsound.mp3");
+var runTIme = new Audio("trebolClan.mp3");
+var stopTIme = new Audio("stopAlarm.mp3");
+
 
 function setup() {
   document.getElementById("set").addEventListener("click", () => {
@@ -19,7 +23,7 @@ function playAlarm() {
 }
 
 function pauseAlarm() {
-  audio.pause();
+  stopTIme.pause();
 }
 
 window.onload = setup;
