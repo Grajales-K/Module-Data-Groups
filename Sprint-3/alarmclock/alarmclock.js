@@ -12,6 +12,23 @@ function setAlarm(){
     alert("Please type or select your time");
     return;
   }
+
+  // Store the remaining time for the countdown
+  let timeRemaining = inputTime;
+
+    /**
+   * Function to format the time into "MM:SS" format
+   * @param {number} seconds - The number of seconds to be formatted
+   * @returns {string} - The formatted time in the form "Time Remaining: MM:SS"
+   */
+  function formatTime(seconds) {
+    // Calculate minutes and remaining seconds
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+
+    // Return the formatted time as a string
+    return `Time Remaining: ${minutes.toString().padStart(2, "0")}:${remainingSeconds.toString().padStart(2, "0")}`;
+  }
 } 
 
 // DO NOT EDIT BELOW HERE   this code below
