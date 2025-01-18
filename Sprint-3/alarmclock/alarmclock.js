@@ -1,17 +1,14 @@
-function setAlarm() {
+let countdown; // Declare countdown globally to make it accessible
 
-}
+function setAlarm() 
 
-// DO NOT EDIT BELOW HERE
+// DO NOT EDIT BELOW HERE   this code below
 
-var runTIme = new Audio("trebolClan.mp3");
-var stopTIme = new Audio("stopAlarm.mp3");
+var soundAlarm = new Audio("trebolClan.mp3");
+var SoundStop = new Audio("stopAlarm.mp3");
 
-  // Select the input element
-  const alarmInput = document.getElementById('alarmSet');
-
-  // Set the placeholder dynamically
-  alarmInput.placeholder = "Type or select your time -----------> ";
+const alarmInput = document.getElementById("alarmSet");
+alarmInput.placeholder = "Type or select the time  ------------->";
 
 function setup() {
   document.getElementById("set").addEventListener("click", () => {
@@ -24,11 +21,13 @@ function setup() {
 }
 
 function playAlarm() {
-  audio.play();
+  soundAlarm.play();
 }
 
 function pauseAlarm() {
-  stopTIme.pause();
+  clearInterval(countdown);
+  soundAlarm.pause();
+  SoundStop.play();
 }
 
 window.onload = setup;
