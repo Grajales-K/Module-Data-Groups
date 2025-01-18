@@ -1,56 +1,65 @@
 let countdown; // Declare countdown globally to make it accessible
 
 function setAlarm() {
-  clearInterval(countdown); // Clear any previous timer to prevent overlapping
+  // Clear any previous timer to prevent multiple timers running simultaneously
+  clearInterval(countdown);
 
-  // Get user input and validate it
+  // Get the value entered by the user in the input field and convert it to an integer
   let inputTime = parseInt(document.getElementById("alarmSet").value);
 
+  // If the input is not a valid number or is less than or equal to 0, show an alert and stop execution
   if (isNaN(inputTime) || inputTime <= 0) {
     alert("Please type or select your time 👇⏰");
     return;
   }
 
-  //This lets us calculate the exact end time (endTime) when the countdown should stop
-  const endTime = Date.now() + inputTime * 1000; // Calculate the exact end time in milliseconds
+  // Store the remaining time for the countdown
+  let timeRemaining = inputTime;
 
-  
+  /**
+   * Function to format the time into "MM:SS" format
+   * @param {number} seconds - The number of seconds to be formatted
+   * @returns {string} - The formatted time in the form "Time Remaining: MM:SS"
+   */
   function formatTime(seconds) {
+    // Calculate minutes and remaining seconds
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
+
+    // Return the formatted time as a string
     return `Time Remaining: ${minutes
       .toString()
       .padStart(2, "0")}:${remainingSeconds.toString().padStart(2, "0")}`;
   }
 
-  function updateCountdown() {
-    const timeRemaining = Math.max(
-      0,
-      Math.round((endTime - Date.now()) / 1000)
-    ); // Time left in seconds
+  // Update the time display on the page with the initial time
+  document.getElementById("timeRemaining").textContent =
+    formatTime(timeRemaining);
 
-    // Update the time display
-    document.getElementById("timeRemaining").textContent =
-      formatTime(timeRemaining);
+  // Start the countdown timer to update the time every second
+  countdown = setInterval(function () {
+    // If the time reaches 0, stop the countdown and play the alarm
+    if (timeRemaining <= 0) {
+      playAlarm(); // Play the alarm sound
+      clearInterval(countdown); // Stop the countdown timer
+    } else {
+      // Otherwise, decrease the remaining time by 1 second
+      timeRemaining--;
 
-    // Check if the timer has reached 0
-    if (timeRemaining === 0) {
-      clearInterval(countdown); // Stop the countdown
-      playAlarm(); // Play the alarm immediately
+      // Update the time display on the page with the updated time
+      document.getElementById("timeRemaining").textContent =
+        formatTime(timeRemaining);
     }
-  }
-
-  // Display the initial time
-  updateCountdown();
-
-  // Set up the interval to update the countdown every 100ms for better precision
-  countdown = setInterval(updateCountdown, 100);
+  }, 1000); // The timer runs every 1000 milliseconds (1 second)
 }
 
 // DO NOT EDIT BELOW HERE   this code below
 
-let soundAlarm = new Audio("trebolClan.mp3");
-let SoundStop = new Audio("stopAlarm.mp3");
+var soundAlarm = new Audio("trebolClan.mp3");
+var SoundStop = new Audio("stopAlarm.mp3");
+
+const alarmInput = document.getElementById("alarmSet");
+alarmInput.placeholder = "Type or select the time  ------------->";
 
 function setup() {
   document.getElementById("set").addEventListener("click", () => {
@@ -69,8 +78,7 @@ function playAlarm() {
 function pauseAlarm() {
   clearInterval(countdown);
   soundAlarm.pause();
-  soundAlarm.currentTime = 0;
   SoundStop.play();
 }
 
-window.onload = setup;
+window.onload = setup: 
