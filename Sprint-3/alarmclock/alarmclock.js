@@ -1,6 +1,18 @@
 let countdown; // Declare countdown globally to make it accessible
 
-function setAlarm() 
+function setAlarm(){
+  // Clear any previous timer to prevent multiple timers running simultaneously
+  clearInterval(countdown);
+
+  // Get the value entered by the user in the input field and convert it to an integer
+  let inputTime = parseInt(document.getElementById("alarmSet").value);
+
+  // If the input is not a valid number or is less than or equal to 0, show an alert and stop execution
+  if (isNaN(inputTime) || inputTime <= 0) {
+    alert("Please type or select your time");
+    return;
+  }
+} 
 
 // DO NOT EDIT BELOW HERE   this code below
 
