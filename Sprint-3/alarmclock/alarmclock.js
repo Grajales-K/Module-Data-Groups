@@ -38,14 +38,15 @@ function setAlarm() {
 
   // Start the countdown timer to update the time every second
   countdown = setInterval(function () {
+    // Otherwise, decrease the remaining time by 1 second
+    timeRemaining--;
+
     // If the time reaches 0, stop the countdown and play the alarm
     if (timeRemaining <= 0) {
-      playAlarm(); // Play the alarm sound
       clearInterval(countdown); // Stop the countdown timer
+      document.getElementById("timeRemaining").textContent = formatTime(0); // Ensure "00:00" is displayed
+      playAlarm(); // Play the alarm sound
     } else {
-      // Otherwise, decrease the remaining time by 1 second
-      timeRemaining--;
-
       // Update the time display on the page with the updated time
       document.getElementById("timeRemaining").textContent =
         formatTime(timeRemaining);
@@ -53,13 +54,9 @@ function setAlarm() {
   }, 1000); // The timer runs every 1000 milliseconds (1 second)
 }
 
-// DO NOT EDIT BELOW HERE   this code below
-
-var soundAlarm = new Audio("trebolClan.mp3");
-var SoundStop = new Audio("stopAlarm.mp3");
-
-const alarmInput = document.getElementById("alarmSet");
-alarmInput.placeholder = "Type or select the time  ------------->";
+// DO NOT EDIT BELOW HERE
+let soundAlarm = new Audio("trebolClan.mp3");
+let SoundStop = new Audio("stopAlarm.mp3");
 
 function setup() {
   document.getElementById("set").addEventListener("click", () => {
@@ -78,7 +75,8 @@ function playAlarm() {
 function pauseAlarm() {
   clearInterval(countdown);
   soundAlarm.pause();
+  soundAlarm.currentTime = 0;
   SoundStop.play();
 }
 
-window.onload = setup: 
+window.onload = setup;
