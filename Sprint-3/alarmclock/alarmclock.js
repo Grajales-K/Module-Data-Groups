@@ -24,9 +24,7 @@ function setAlarm() {
   }
 
   function updateCountdown() {
-    const timeRemaining = Math.max(
-      0,
-      Math.round((endTime - Date.now()) / 1000)
+    const timeRemaining = Math.max(0,Math.round((endTime - Date.now()) / 1000)
     ); // Time left in seconds
 
     // Update the time display
