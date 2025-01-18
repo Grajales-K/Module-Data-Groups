@@ -9,7 +9,7 @@ function setAlarm() {
 
   // If the input is not a valid number or is less than or equal to 0, show an alert and stop execution
   if (isNaN(inputTime) || inputTime <= 0) {
-    alert("Please type or select your time");
+    alert("Please type or select your time 👇⏰");
     return;
   }
 
@@ -35,7 +35,7 @@ function setAlarm() {
   // Update the time display on the page with the initial time
   document.getElementById("timeRemaining").textContent =
     formatTime(timeRemaining);
-    
+
   // Start the countdown timer to update the time every second
   countdown = setInterval(function () {
     // If the time reaches 0, stop the countdown and play the alarm
