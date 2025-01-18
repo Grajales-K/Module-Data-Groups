@@ -81,4 +81,4 @@ function pauseAlarm() {
   SoundStop.play();
 }
 
-window.onload = setup;
+window.onload = setup: 
