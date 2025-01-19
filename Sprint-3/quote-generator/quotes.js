@@ -38,7 +38,7 @@
 
 // ============================ random play version =============================
 
-let backgroundSound = new Audio("SPACE.mp3");
+let backgroundSound = new Audio("assets/SPACE.mp3");
 let isSoundStarted = false; 
 
 function playSound() {
