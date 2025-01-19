@@ -39,13 +39,16 @@
 // ============================ random play version =============================
 
 let backgroundSound = new Audio("SPACE.mp3");
+let isSoundStarted = false; 
 
 function playSound() {
-  backgroundSound.play();
+  backgroundSound.play().catch((error) => {
+    console.error("Error to play sound", error);
+  });
 }
 
-function pickFromArray(choices) {
-  return choices[Math.floor(Math.random() * choices.length)];
+function pickFromArray(quotes) {
+  return quotes[Math.floor(Math.random() * quotes.length)];
 }
 
 const container = document.querySelector("#container-quote");
@@ -61,10 +64,14 @@ function randomQuoteGenerate() {
 
 window.onload = () => {
   randomQuoteGenerate();
-  playSound(); 
 };
 
-button.addEventListener("click", randomQuoteGenerate);
+button.addEventListener("click", () => {randomQuoteGenerate();
+  if (!isSoundStarted) {
+    playSound();
+    isSoundStarted = true;
+  }
+});
 
 const secondButton = document.createElement("button");
 secondButton.textContent = "Play Auto-Quotes";
@@ -82,9 +89,12 @@ secondButton.addEventListener("click", () => {
   } else {
     quoteInterval = setInterval(randomQuoteGenerate, 2000);
     secondButton.textContent = "Stop";
+    if (!isSoundStarted) {
+      playSound(); 
+      isSoundStarted = true;
+    }
   }
 });
-
 
 // ========================= array quotes ======================
 
