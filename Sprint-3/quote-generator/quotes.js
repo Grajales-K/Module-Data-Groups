@@ -36,6 +36,12 @@
 
 // ============================ random play version =============================
 
+let backgroundSound = new Audio("SPACE.mp3");
+
+function playSound() {
+  backgroundSound.play();
+}
+
 function pickFromArray(choices) {
   return choices[Math.floor(Math.random() * choices.length)];
 }
@@ -51,7 +57,10 @@ function randomQuoteGenerate() {
   quoteAuthor.textContent = randomArr.author;
 }
 
-window.onload = randomQuoteGenerate;
+window.onload = () => {
+  randomQuoteGenerate();
+  playSound(); 
+};
 
 button.addEventListener("click", randomQuoteGenerate);
 
@@ -73,6 +82,7 @@ secondButton.addEventListener("click", () => {
     secondButton.textContent = "Stop";
   }
 });
+
 
 // ========================= array quotes ======================
 
