@@ -15,28 +15,64 @@
 // ---------------
 // pickFromArray(['a','b','c','d'])     // maybe returns 'c'
 
-
 // You don't need to change this function
+// function pickFromArray(choices) {
+//   return choices[Math.floor(Math.random() * choices.length)];
+// }
+
+// const quoteText = document.querySelector("#quote");
+// const quoteAuthor = document.querySelector("#author");
+// const button = document.querySelector("#new-quote");
+
+// function randomQuoteGenerate() {
+//   const randomQuote = pickFromArray(quotes);
+//   quoteText.textContent = randomQuote.quote;
+//   quoteAuthor.textContent = randomQuote.author;
+// }
+
+// window.onload = randomQuoteGenerate;
+
+// button.addEventListener("click", randomQuoteGenerate);
+
+// ============================ random play version =============================
+
 function pickFromArray(choices) {
   return choices[Math.floor(Math.random() * choices.length)];
 }
 
+const container = document.querySelector("#container-quote");
 const quoteText = document.querySelector("#quote");
 const quoteAuthor = document.querySelector("#author");
 const button = document.querySelector("#new-quote");
 
 function randomQuoteGenerate() {
-  const randomQuote = pickFromArray(quotes); 
-  quoteText.textContent = randomQuote.quote; 
-  quoteAuthor.textContent = randomQuote.author; 
+  const randomArr = pickFromArray(quotes);
+  quoteText.textContent = randomArr.quote;
+  quoteAuthor.textContent = randomArr.author;
 }
 
 window.onload = randomQuoteGenerate;
 
 button.addEventListener("click", randomQuoteGenerate);
 
+const secondButton = document.createElement("button");
+secondButton.textContent = "Play Auto-Quotes";
+secondButton.classList.add("btn");
 
+container.appendChild(secondButton);
 
+let quoteInterval;
+
+secondButton.addEventListener("click", () => {
+  if (quoteInterval) {
+    clearInterval(quoteInterval);
+    quoteInterval = null;
+    secondButton.textContent = "Play Auto-Quotes";
+  } else {
+    quoteInterval = setInterval(randomQuoteGenerate, 2000);
+    secondButton.textContent = "Stop";
+  }
+});
 
 // ========================= array quotes ======================
 
