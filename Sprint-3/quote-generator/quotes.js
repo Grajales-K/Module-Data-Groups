@@ -34,6 +34,8 @@
 
 // button.addEventListener("click", randomQuoteGenerate);
 
+
+
 // ============================ random play version =============================
 
 let backgroundSound = new Audio("SPACE.mp3");
