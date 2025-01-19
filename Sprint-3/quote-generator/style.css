@@ -17,11 +17,17 @@ body {
     padding: 20px 40px;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgb(163, 198, 221);
-    text-align: center;   
+
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: white;
 }
 
 .quote-box {
-    background-color: rgb(59, 94, 3);
+    background-color: rgba(63, 59, 88, 0.286);
     color: white;
     padding: 20px;
     border-radius: 8px;
@@ -42,13 +48,7 @@ body {
     text-overflow: white;
 }
 
-h1{
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: white;
-}
-
-button {
+.btn {
     background-color: #03fbff45;
     color: white;
     border: none;
@@ -57,16 +57,18 @@ button {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 0.8rem;
 }
 
-button:hover {
+.btn:hover {
     background-color: #02ffe6;
     transform: translateY(-2px);
     color: blue;
     font-weight: bold;
+
 }
 
-button:active {
+.btn:active {
     /* background-color: #4b47b0; */
     transform: translateY(0);               
 }
